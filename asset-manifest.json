@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/Maxhu787/Random-ReactJS-project/static/css/main.073c9b0a.css",
-    "main.js": "/Maxhu787/Random-ReactJS-project/static/js/main.931ce271.js",
+    "main.css": "/Maxhu787/Random-ReactJS-project/static/css/main.294eb337.css",
+    "main.js": "/Maxhu787/Random-ReactJS-project/static/js/main.6109628f.js",
     "static/js/787.3df7893b.chunk.js": "/Maxhu787/Random-ReactJS-project/static/js/787.3df7893b.chunk.js",
-    "static/media/logo.svg": "/Maxhu787/Random-ReactJS-project/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/Maxhu787/Random-ReactJS-project/index.html",
-    "main.073c9b0a.css.map": "/Maxhu787/Random-ReactJS-project/static/css/main.073c9b0a.css.map",
-    "main.931ce271.js.map": "/Maxhu787/Random-ReactJS-project/static/js/main.931ce271.js.map",
+    "main.294eb337.css.map": "/Maxhu787/Random-ReactJS-project/static/css/main.294eb337.css.map",
+    "main.6109628f.js.map": "/Maxhu787/Random-ReactJS-project/static/js/main.6109628f.js.map",
     "787.3df7893b.chunk.js.map": "/Maxhu787/Random-ReactJS-project/static/js/787.3df7893b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.931ce271.js"
+    "static/css/main.294eb337.css",
+    "static/js/main.6109628f.js"
   ]
 }
