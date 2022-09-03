@@ -5,18 +5,21 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: "test"
+      test: "25:00"
     };
     //this.incremental = this.incremental.bind(this);
   }
   render() {
     return (
       <div>
+        <h2>25 + 5 Clock</h2>
         <Controls />
+        <Display time={this.state.test}/>
       </div>
     )
   }
 }
+
 class Controls extends React.Component {
   render() {
     const controlBtn = {
@@ -37,6 +40,17 @@ class Controls extends React.Component {
           <button style={controlBtn}>↓</button>
           <button style={controlBtn}>↑</button>
         </section>
+      </div>
+    )
+  }
+}
+class Display extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>Session</h2>
+        <p>{this.props.time}</p>
+        <button>⏯️</button>
       </div>
     )
   }
