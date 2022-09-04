@@ -5,16 +5,38 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      test: "25:00"
+      seconds: 60,
+      paused: true
     };
-    //this.incremental = this.incremental.bind(this);
+    this.toggle = this.toggle.bind(this)
+  }
+  toggle() {
+    let test = setInterval(() => {
+      if (!this.state.paused) {
+        this.setState({
+          seconds: this.state.seconds - 1
+        })
+      }
+    }, 1000);
+    if(this.state.paused) {
+      this.setState({
+        paused: false
+      })
+    } else {
+      this.setState({
+        paused: true
+      })
+    }
   }
   render() {
     return (
       <div>
         <h2>25 + 5 Clock</h2>
         <Controls />
-        <Display time={this.state.test}/>
+        <Display 
+          time={this.state.seconds}
+          toggle={this.toggle}
+        />
       </div>
     )
   }
@@ -25,7 +47,7 @@ class Controls extends React.Component {
     const controlBtn = {
       color: "000",
       padding: "20px",
-      "font-size": "40px",
+      "fontSize": "40px",
       cursor: "pointer",
     }
     return (
@@ -46,11 +68,14 @@ class Controls extends React.Component {
 }
 class Display extends React.Component {
   render() {
+    const timeStyle = {
+      fontSize: "50px"
+    }
     return (
       <div>
         <h2>Session</h2>
-        <p>{this.props.time}</p>
-        <button>⏯️</button>
+        <p style={timeStyle}>{this.props.time}</p>
+        <button onClick={this.props.toggle}>⏯️</button>
       </div>
     )
   }
