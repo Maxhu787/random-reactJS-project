@@ -8,7 +8,9 @@ class App extends React.Component {
       seconds: 60,
       paused: true
     };
-    this.toggle = this.toggle.bind(this)
+    this.toggle = this.toggle.bind(this);
+    this.addSessionLength = this.addSessionLength.bind(this);
+    this.subtractSessionLength = this.subtractSessionLength.bind(this);
   }
   toggle() {
     let secondsInterval = setInterval(() => {
@@ -29,11 +31,28 @@ class App extends React.Component {
       })
     }
   }
+  subtractSessionLength() {
+    if(this.state.seconds > 0) {
+      this.setState({
+        seconds: this.state.seconds - 60
+      })
+    }
+  }
+
+  addSessionLength() {
+    this.setState({
+      seconds: this.state.seconds + 60
+    })
+  }
+
   render() {
     return (
       <div>
         <h2>25 + 5 Clock</h2>
-        <Controls />
+        <Controls 
+          subtractSessionLength={this.subtractSessionLength}
+          addSessionLength={this.addSessionLength}
+        />
         <Display 
           time={this.state.seconds}
           toggle={this.toggle}
@@ -60,8 +79,8 @@ class Controls extends React.Component {
         </section>
         <section style={{ display: "inline", float: "right"}}>
           <h3>Session Length</h3>
-          <button style={controlBtn}>↓</button>
-          <button style={controlBtn}>↑</button>
+          <button onClick={this.props.subtractSessionLength} style={controlBtn}>↓</button>
+          <button onClick={this.props.addSessionLength} style={controlBtn}>↑</button>
         </section>
       </div>
     )
