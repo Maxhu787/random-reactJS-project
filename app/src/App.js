@@ -11,13 +11,14 @@ class App extends React.Component {
     this.toggle = this.toggle.bind(this)
   }
   toggle() {
-    let test = setInterval(() => {
-      if (!this.state.paused) {
+    let secondsInterval = setInterval(() => {
+      if (!this.state.paused && this.state.seconds > 0) {
         this.setState({
           seconds: this.state.seconds - 1
         })
       }
     }, 1000);
+
     if(this.state.paused) {
       this.setState({
         paused: false
