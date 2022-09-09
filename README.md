@@ -1,3 +1,3 @@
 # Random-ReactJS-project
 
-A random ReactJS app
+Timer ReactJS app (unfinished)
