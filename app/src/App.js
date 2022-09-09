@@ -13,24 +13,26 @@ class App extends React.Component {
     this.subtractSessionLength = this.subtractSessionLength.bind(this);
   }
   toggle() {
-    let secondsInterval = setInterval(() => {
-      if (!this.state.paused && this.state.seconds > 0) {
-        this.setState({
-          seconds: this.state.seconds - 1
-        })
-      }
-    }, 1000);
-
     if(this.state.paused) {
       this.setState({
         paused: false
       })
+
+      this.secondsInterval = setInterval(() => {
+        if (!this.state.paused && this.state.seconds > 0) {
+          this.setState({
+            seconds: this.state.seconds - 1
+          })
+        }
+      }, 1000);
     } else {
       this.setState({
         paused: true
       })
+      clearInterval(this.secondsInterval);
     }
   }
+
   subtractSessionLength() {
     if(this.state.seconds > 0) {
       this.setState({
