@@ -135,10 +135,11 @@ class Display extends React.Component {
     const timeStyle = {
       fontSize: "50px"
     }
+    let displayTime = new Date(this.props.time * 1000).toISOString()
     return (
       <div>
         <h2 id="timer-label">Session</h2>
-        <p id="time-left" style={timeStyle}>{this.props.time}</p>
+        <p id="time-left" style={timeStyle}>{displayTime}</p>
         <button id="start_stop" onClick={this.props.toggle}>
           <img src={startImg} alt="start" />
           <img src={stopImg} alt="stop" />
