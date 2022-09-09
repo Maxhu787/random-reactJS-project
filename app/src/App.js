@@ -5,6 +5,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      sessionLength: 60,
       seconds: 60,
       paused: true
     };
@@ -13,9 +14,10 @@ class App extends React.Component {
     this.subtractSessionLength = this.subtractSessionLength.bind(this);
   }
   toggle() {
-    if(this.state.paused) {
+    if(this.state.paused && this.state.seconds >= 60) {
       this.setState({
-        paused: false
+        paused: false,
+        seconds: this.state.sessionLength
       })
 
       this.secondsInterval = setInterval(() => {
@@ -36,14 +38,16 @@ class App extends React.Component {
   subtractSessionLength() {
     if(this.state.seconds > 0) {
       this.setState({
-        seconds: this.state.seconds - 60
+        sessionLength: this.state.sessionLength - 60,
+        seconds: this.state.sessionLength - 60
       })
     }
   }
 
   addSessionLength() {
     this.setState({
-      seconds: this.state.seconds + 60
+      sessionLength: this.state.sessionLength + 60,
+      seconds: this.state.sessionLength + 60
     })
   }
 
@@ -54,6 +58,8 @@ class App extends React.Component {
         <Controls 
           subtractSessionLength={this.subtractSessionLength}
           addSessionLength={this.addSessionLength}
+          breakLength={"test"}
+          sessionLength={this.state.sessionLength}
         />
         <Display 
           time={this.state.seconds}
@@ -76,11 +82,13 @@ class Controls extends React.Component {
       <div style={{padding: "200px"}}>
         <section style={{display: "inline", float: "left"}}>
           <h3>Break Length</h3>
+          <p>{this.props.breakLength}</p>
           <button style={controlBtn}>↓</button>
           <button style={controlBtn}>↑</button>
         </section>
         <section style={{ display: "inline", float: "right"}}>
           <h3>Session Length</h3>
+          <p>{this.props.sessionLength}</p>
           <button onClick={this.props.subtractSessionLength} style={controlBtn}>↓</button>
           <button onClick={this.props.addSessionLength} style={controlBtn}>↑</button>
         </section>
