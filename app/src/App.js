@@ -6,12 +6,15 @@ class App extends React.Component {
     super(props);
     this.state = {
       sessionLength: 60,
+      breakLength: 300,
       seconds: 60,
       paused: true
     };
     this.toggle = this.toggle.bind(this);
     this.addSessionLength = this.addSessionLength.bind(this);
     this.subtractSessionLength = this.subtractSessionLength.bind(this);
+    this.addBreakLength = this.addBreakLength.bind(this);
+    this.subtractBreakLength = this.subtractBreakLength.bind(this);
   }
   toggle() {
     if(this.state.paused && this.state.seconds >= 60) {
@@ -43,11 +46,23 @@ class App extends React.Component {
       })
     }
   }
-
   addSessionLength() {
     this.setState({
       sessionLength: this.state.sessionLength + 60,
       seconds: this.state.sessionLength + 60
+    })
+  }
+
+  subtractBreakLength() {
+    if (this.state.seconds > 0) {
+      this.setState({
+        breakLength: this.state.breakLength - 60,
+      })
+    }
+  }
+  addBreakLength() {
+    this.setState({
+      breakLength: this.state.breakLength + 60,
     })
   }
 
@@ -58,7 +73,9 @@ class App extends React.Component {
         <Controls 
           subtractSessionLength={this.subtractSessionLength}
           addSessionLength={this.addSessionLength}
-          breakLength={"test"}
+          subtractBreakLength={this.subtractBreakLength}
+          addBreakLength={this.addBreakLength}
+          breakLength={this.state.breakLength}
           sessionLength={this.state.sessionLength}
         />
         <Display 
@@ -81,14 +98,14 @@ class Controls extends React.Component {
     return (
       <div style={{padding: "200px"}}>
         <section style={{display: "inline", float: "left"}}>
-          <h3>Break Length</h3>
-          <p>{this.props.breakLength}</p>
-          <button style={controlBtn}>↓</button>
-          <button style={controlBtn}>↑</button>
+          <h3 id="break-label">Break Length</h3>
+          <p id="break-length">{this.props.breakLength}</p>
+          <button id="break-decrement" onClick={this.props.subtractBreakLength} style={controlBtn}>↓</button>
+          <button id="break-increment" onClick={this.props.addBreakLength} style={controlBtn}>↑</button>
         </section>
         <section style={{ display: "inline", float: "right"}}>
-          <h3>Session Length</h3>
-          <p>{this.props.sessionLength}</p>
+          <h3 id="session-label">Session Length</h3>
+          <p id="session-length">{this.props.sessionLength}</p>
           <button onClick={this.props.subtractSessionLength} style={controlBtn}>↓</button>
           <button onClick={this.props.addSessionLength} style={controlBtn}>↑</button>
         </section>
@@ -103,9 +120,10 @@ class Display extends React.Component {
     }
     return (
       <div>
-        <h2>Session</h2>
-        <p style={timeStyle}>{this.props.time}</p>
-        <button onClick={this.props.toggle}>⏯️</button>
+        <h2 id="timer-label">Session</h2>
+        <p id="time-left" style={timeStyle}>{this.props.time}</p>
+        <button id="start_stop" onClick={this.props.toggle}>⏯️</button>
+        <button id="reset">N/A</button>
       </div>
     )
   }
