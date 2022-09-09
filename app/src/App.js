@@ -1,5 +1,8 @@
 import './App.css';
 import React from 'react';
+import startImg from "./start.png";
+import stopImg from "./stop.png";
+import resetImg from "./reset.png";
 
 class App extends React.Component {
   constructor(props) {
@@ -11,6 +14,7 @@ class App extends React.Component {
       paused: true
     };
     this.toggle = this.toggle.bind(this);
+    this.reset = this.reset.bind(this);
     this.addSessionLength = this.addSessionLength.bind(this);
     this.subtractSessionLength = this.subtractSessionLength.bind(this);
     this.addBreakLength = this.addBreakLength.bind(this);
@@ -20,9 +24,8 @@ class App extends React.Component {
     if(this.state.paused && this.state.seconds >= 60) {
       this.setState({
         paused: false,
-        seconds: this.state.sessionLength
       })
-
+      //seconds: this.state.sessionLength
       this.secondsInterval = setInterval(() => {
         if (!this.state.paused && this.state.seconds > 0) {
           this.setState({
@@ -38,8 +41,17 @@ class App extends React.Component {
     }
   }
 
+  reset() {
+    this.setState({
+      sessionLength: 60,
+      breakLength: 300,
+      seconds: 60,
+      paused: true
+    })
+  }
+
   subtractSessionLength() {
-    if(this.state.seconds > 0) {
+    if (this.state.sessionLength > 60 && this.state.paused === true) {
       this.setState({
         sessionLength: this.state.sessionLength - 60,
         seconds: this.state.sessionLength - 60
@@ -47,23 +59,27 @@ class App extends React.Component {
     }
   }
   addSessionLength() {
-    this.setState({
-      sessionLength: this.state.sessionLength + 60,
-      seconds: this.state.sessionLength + 60
-    })
+    if (this.state.paused === true) {
+      this.setState({
+        sessionLength: this.state.sessionLength + 60,
+        seconds: this.state.sessionLength + 60
+      })
+    }
   }
 
   subtractBreakLength() {
-    if (this.state.seconds > 0) {
+    if (this.state.breakLength > 60 && this.state.paused === true) {
       this.setState({
         breakLength: this.state.breakLength - 60,
       })
     }
   }
   addBreakLength() {
-    this.setState({
-      breakLength: this.state.breakLength + 60,
-    })
+    if (this.state.paused === true) {
+      this.setState({
+        breakLength: this.state.breakLength + 60,
+      })
+    }
   }
 
   render() {
@@ -81,6 +97,7 @@ class App extends React.Component {
         <Display 
           time={this.state.seconds}
           toggle={this.toggle}
+          reset={this.reset}
         />
       </div>
     )
@@ -122,8 +139,11 @@ class Display extends React.Component {
       <div>
         <h2 id="timer-label">Session</h2>
         <p id="time-left" style={timeStyle}>{this.props.time}</p>
-        <button id="start_stop" onClick={this.props.toggle}>⏯️</button>
-        <button id="reset">N/A</button>
+        <button id="start_stop" onClick={this.props.toggle}>
+          <img src={startImg} alt="start" />
+          <img src={stopImg} alt="stop" />
+          </button>
+        <button id="reset" onClick={this.props.reset}><img src={resetImg} alt="reset" /></button>
       </div>
     )
   }
