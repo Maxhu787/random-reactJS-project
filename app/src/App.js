@@ -3,6 +3,7 @@ import React from 'react';
 import resetImg from './reset.png'
 import startImg from './start.png'
 import stopImg from './stop.png'
+import beep from './sus.wav';
 
 class App extends React.Component {
   constructor(props) {
@@ -163,8 +164,10 @@ class Display extends React.Component {
         <button id="reset" onClick={this.props.reset}>
           <img src={resetImg} alt="reset" />
         </button>
+        <audio ref="audio_tag" id="beep" src={beep} type='audio/wav' controls autoPlay></audio>
       </div>
     )
   }
 }
+
 export default App;
