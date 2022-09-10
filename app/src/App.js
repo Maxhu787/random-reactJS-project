@@ -114,6 +114,9 @@ class App extends React.Component {
           reset={this.reset}
           clockState={this.state.clockState}
         />
+        <Audio 
+        clockState={this.state.clockState}
+        />
       </div>
     )
   }
@@ -149,8 +152,14 @@ class Controls extends React.Component {
 }
 class Display extends React.Component {
   render() {
-    const timeStyle = {
+    let timeStyle = {
       fontSize: "50px"
+    }
+    if(this.props.time <= 60) {
+      timeStyle = {
+        fontSize: "50px",
+        color: "red"
+      }
     }
     let displayTime = new Date(this.props.time * 1000).toISOString().substring(14, 19)
     return (
@@ -163,10 +172,20 @@ class Display extends React.Component {
         </button>
         <button id="reset" onClick={this.props.reset}>
           <img src={resetImg} alt="reset" />
-        </button>
-        <audio ref="audio_tag" id="beep" src={beep} type='audio/wav' controls autoPlay></audio>
+        </button> 
       </div>
     )
+  }
+}
+class Audio extends React.Component {
+  render() {
+    if (this.props.clockState === 'Break') {
+      return (
+        <>
+          <audio id="beep" src={beep} type='audio/wav' autoPlay></audio>
+        </>
+      )
+    }
   }
 }
 
