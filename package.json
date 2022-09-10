@@ -4,14 +4,14 @@
     "description": "A random ReactJS project",
     "repository": {
       "type": "git",
-      "url": "git+https://github.com/Maxhu787/Random-ReactJS-project.git"
+      "url": "git+https://github.com/Maxhu787/random-reactJS-project.git"
     },
     "author": "Hu Kaixiang",
     "license": "APACHE LICENSE, VERSION 2.0",
     "bugs": {
       "url": "https://github.com/Maxhu787/Random-ReactJS-project/issues"
   },
-  "homepage": "https://github.com/Maxhu787/Random-ReactJS-project",
+  "homepage": "https://github.com/Maxhu787/random-reactJS-project",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
