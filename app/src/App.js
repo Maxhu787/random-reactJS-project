@@ -11,6 +11,7 @@ class App extends React.Component {
       sessionLength: 60,
       breakLength: 300,
       seconds: 60,
+      clockState: 'Session',
       paused: true
     };
     this.toggle = this.toggle.bind(this);
@@ -25,13 +26,26 @@ class App extends React.Component {
       this.setState({
         paused: false,
       })
+
       this.secondsInterval = setInterval(() => {
         if (!this.state.paused && this.state.seconds > 0) {
           this.setState({
             seconds: this.state.seconds - 1
           })
         }
-      }, 1000);
+        if(this.state.seconds === 0 && this.state.clockState === 'Session') {
+          this.setState({
+            clockState: "Break",
+            seconds: this.state.breakLength
+          })
+        } else if (this.state.seconds === 0 && this.state.clockState === "Break") {
+          this.setState({
+            clockState: "Session",
+            seconds: this.state.sessionLength
+          })
+        }
+      }, 10);
+
     } else {
       this.setState({
         paused: true
@@ -97,6 +111,7 @@ class App extends React.Component {
           time={this.state.seconds}
           toggle={this.toggle}
           reset={this.reset}
+          clockState={this.state.clockState}
         />
       </div>
     )
@@ -139,7 +154,7 @@ class Display extends React.Component {
     let displayTime = new Date(this.props.time * 1000).toISOString().substring(14, 19)
     return (
       <div>
-        <h2 id="timer-label">Session</h2>
+        <h2 id="timer-label">{this.props.clockState}</h2>
         <p id="time-left" style={timeStyle}>{displayTime}</p>
         <button id="start_stop" onClick={this.props.toggle}>
           <img src={startImg} alt="start" />

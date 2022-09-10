@@ -8,6 +8,7 @@ body {
   background-image: url(./background-img.jpg);
   background-repeat: no-repeat;
   background-position: center 0px;
+  user-select: none;
 }
 
 h3 {
@@ -24,6 +25,10 @@ h2 {
 
 p {
   font-size: 30px;
+  background-color: rgba(41, 41, 41, 0.6);
+  border-radius: 8px;
+  margin: 0px 80px;
+  padding: 10px;
 }
 
 button {
