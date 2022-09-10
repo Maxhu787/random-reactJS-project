@@ -1,8 +1,8 @@
 import './App.css';
 import React from 'react';
-import startImg from "./start.png";
-import stopImg from "./stop.png";
-import resetImg from "./reset.png";
+import resetImg from './reset.png'
+import startImg from './start.png'
+import stopImg from './stop.png'
 
 class App extends React.Component {
   constructor(props) {
@@ -21,11 +21,10 @@ class App extends React.Component {
     this.subtractBreakLength = this.subtractBreakLength.bind(this);
   }
   toggle() {
-    if(this.state.paused && this.state.seconds >= 60) {
+    if (this.state.paused && this.state.seconds >= 60) {
       this.setState({
         paused: false,
       })
-      //seconds: this.state.sessionLength
       this.secondsInterval = setInterval(() => {
         if (!this.state.paused && this.state.seconds > 0) {
           this.setState({
@@ -59,7 +58,7 @@ class App extends React.Component {
     }
   }
   addSessionLength() {
-    if (this.state.paused === true) {
+    if (this.state.paused === true && this.state.sessionLength < 3600) {
       this.setState({
         sessionLength: this.state.sessionLength + 60,
         seconds: this.state.sessionLength + 60
@@ -75,7 +74,7 @@ class App extends React.Component {
     }
   }
   addBreakLength() {
-    if (this.state.paused === true) {
+    if (this.state.paused === true && this.state.breakLength < 3600) {
       this.setState({
         breakLength: this.state.breakLength + 60,
       })
@@ -86,7 +85,7 @@ class App extends React.Component {
     return (
       <div>
         <h2>25 + 5 Clock</h2>
-        <Controls 
+        <Controls
           subtractSessionLength={this.subtractSessionLength}
           addSessionLength={this.addSessionLength}
           subtractBreakLength={this.subtractBreakLength}
@@ -94,7 +93,7 @@ class App extends React.Component {
           breakLength={this.state.breakLength}
           sessionLength={this.state.sessionLength}
         />
-        <Display 
+        <Display
           time={this.state.seconds}
           toggle={this.toggle}
           reset={this.reset}
@@ -112,17 +111,19 @@ class Controls extends React.Component {
       "fontSize": "40px",
       cursor: "pointer",
     }
+    let sessionLength = this.props.sessionLength / 60
+    let breakLength = this.props.breakLength / 60
     return (
-      <div style={{padding: "200px"}}>
-        <section style={{display: "inline", float: "left"}}>
+      <div style={{ padding: "200px" }}>
+        <section style={{ display: "inline", float: "left" }}>
           <h3 id="break-label">Break Length</h3>
-          <p id="break-length">{this.props.breakLength}</p>
+          <p id="break-length">{breakLength}</p>
           <button id="break-decrement" onClick={this.props.subtractBreakLength} style={controlBtn}>↓</button>
           <button id="break-increment" onClick={this.props.addBreakLength} style={controlBtn}>↑</button>
         </section>
-        <section style={{ display: "inline", float: "right"}}>
+        <section style={{ display: "inline", float: "right" }}>
           <h3 id="session-label">Session Length</h3>
-          <p id="session-length">{this.props.sessionLength}</p>
+          <p id="session-length">{sessionLength}</p>
           <button onClick={this.props.subtractSessionLength} style={controlBtn}>↓</button>
           <button onClick={this.props.addSessionLength} style={controlBtn}>↑</button>
         </section>
@@ -135,7 +136,7 @@ class Display extends React.Component {
     const timeStyle = {
       fontSize: "50px"
     }
-    let displayTime = new Date(this.props.time * 1000).toISOString().substring(8, 11)
+    let displayTime = new Date(this.props.time * 1000).toISOString().substring(14, 19)
     return (
       <div>
         <h2 id="timer-label">Session</h2>
@@ -143,8 +144,10 @@ class Display extends React.Component {
         <button id="start_stop" onClick={this.props.toggle}>
           <img src={startImg} alt="start" />
           <img src={stopImg} alt="stop" />
-          </button>
-        <button id="reset" onClick={this.props.reset}><img src={resetImg} alt="reset" /></button>
+        </button>
+        <button id="reset" onClick={this.props.reset}>
+          <img src={resetImg} alt="reset" />
+        </button>
       </div>
     )
   }

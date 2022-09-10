@@ -1,7 +1,47 @@
 @import url('https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&family=Montserrat:wght@300&family=Orbitron&family=Work+Sans:wght@300&display=swap');
+
 body {
   text-align: center;
   background-color: rgb(41, 41, 41);
   color: #f3f3f3;
-  font-family: monospace, 'orbitron';
+  font-family: monospace;
+  background-image: url(./background-img.jpg);
+  background-repeat: no-repeat;
+  background-position: center 0px;
+}
+
+h3 {
+  font-family: 'Montserrat';
+  font-weight: 100;
+  font-size: 24px;
+}
+
+h2 {
+  color: #ffa500;
+  font-family: 'Orbitron';
+  font-weight: 100;
+}
+
+p {
+  font-size: 30px;
+}
+
+button {
+  border: none;
+  padding: 20px;
+  cursor: pointer;
+  background-color: rgba(41, 41, 41, 0.6);
+  border-radius: 8px;
+  margin: 8px;
+  color: #fff;
+  transition: background-color .2s ease-in-out;
+  transition: color .1s;
+}
+
+button:hover {
+  background-color: rgb(41, 41, 41, 0);
+}
+
+button:active {
+  color: #000;
 }
