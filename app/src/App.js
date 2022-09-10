@@ -135,7 +135,7 @@ class Display extends React.Component {
     const timeStyle = {
       fontSize: "50px"
     }
-    let displayTime = new Date(this.props.time * 1000).toISOString()
+    let displayTime = new Date(this.props.time * 1000).toISOString().substring(8, 11)
     return (
       <div>
         <h2 id="timer-label">Session</h2>
