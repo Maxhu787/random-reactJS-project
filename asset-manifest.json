@@ -1,16 +1,17 @@
 {
   "files": {
-    "main.css": "/Maxhu787/Random-ReactJS-project/static/css/main.0d2a5574.css",
-    "main.js": "/Maxhu787/Random-ReactJS-project/static/js/main.5d6d0d4c.js",
+    "main.css": "/Maxhu787/Random-ReactJS-project/static/css/main.8fcef47a.css",
+    "main.js": "/Maxhu787/Random-ReactJS-project/static/js/main.65bc6dd7.js",
     "static/js/787.3df7893b.chunk.js": "/Maxhu787/Random-ReactJS-project/static/js/787.3df7893b.chunk.js",
     "static/media/background-img.jpg": "/Maxhu787/Random-ReactJS-project/static/media/background-img.7f01e39dad828aab2fae.jpg",
+    "static/media/sus.wav": "/Maxhu787/Random-ReactJS-project/static/media/sus.3154fc6ac4eda5931d0e.wav",
     "index.html": "/Maxhu787/Random-ReactJS-project/index.html",
-    "main.0d2a5574.css.map": "/Maxhu787/Random-ReactJS-project/static/css/main.0d2a5574.css.map",
-    "main.5d6d0d4c.js.map": "/Maxhu787/Random-ReactJS-project/static/js/main.5d6d0d4c.js.map",
+    "main.8fcef47a.css.map": "/Maxhu787/Random-ReactJS-project/static/css/main.8fcef47a.css.map",
+    "main.65bc6dd7.js.map": "/Maxhu787/Random-ReactJS-project/static/js/main.65bc6dd7.js.map",
     "787.3df7893b.chunk.js.map": "/Maxhu787/Random-ReactJS-project/static/js/787.3df7893b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.0d2a5574.css",
-    "static/js/main.5d6d0d4c.js"
+    "static/css/main.8fcef47a.css",
+    "static/js/main.65bc6dd7.js"
   ]
 }
